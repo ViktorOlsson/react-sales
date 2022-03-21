@@ -2,6 +2,13 @@
 To start application locally run in the root folder:
 docker build -t sales-ui . && docker run --name sales-ui -p 3000:3000 sales-ui
 
+Is is also possible to start the application by running
+'npm' start in the root folder.
+Requirements for this method:
+    - Node installed
+    - NPM
+    - Running 'npm install' in root folder first.
+
 ## This application is built to display sales data to a logged in store manager.
 
 A user must register and login to view relevant sales data.
