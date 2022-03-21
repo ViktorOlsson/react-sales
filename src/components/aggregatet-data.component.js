@@ -141,6 +141,11 @@ export default class AggregatedData extends Component {
             />
           </Form>
         </div>
+        {this.state.content.message ? (
+          <div>{this.state.content.message}</div>
+        ) : (
+          <div></div>
+        )}
         {this.state.dataIsFetched ? (
           <div>
             <ExportToExcel

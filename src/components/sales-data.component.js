@@ -4,7 +4,7 @@ import Input from "react-validation/build/input";
 import Form from "react-validation/build/form";
 import CheckButton from "react-validation/build/button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import  ExportToExcel  from './export-to-excel.component'
+import ExportToExcel from "./export-to-excel.component";
 const required = (value) => {
   if (!value) {
     return (
@@ -59,6 +59,7 @@ export default class SalesData extends Component {
               error.message ||
               error.toString(),
           });
+          console.log(this.state.content);
         }
       );
     }
@@ -146,32 +147,31 @@ export default class SalesData extends Component {
             }}
           />
         </Form>
-        {sumRevenue && sumSalesQy ? (
-          <div>
-          <div className="list-group">
-              <h4 className="list-group-item-heading">Total Revenue</h4>
-              <p className="list-group-item-text">
-                {this.state?.sumRevenue}   
-              </p>
-          </div>
-          <div className="list-group">
-              <h4 className="list-group-item-heading">Total Sales</h4>
-              <p className="list-group-item-text">
-              {this.state?.sumSalesQy}   
-              </p>
-          </div>
-          <ExportToExcel 
-            revenue={this.state.sumRevenue}
-            sales={this.state.sumSalesQy}
-            isFromSales={true}
-          />
-        </div>
+        {this.state.content.message ? (
+          <div>{this.state.content.message}</div>
         ) : (
           <div></div>
         )}
-        
+        {sumRevenue && sumSalesQy ? (
+          <div>
+            <div className="list-group">
+              <h4 className="list-group-item-heading">Total Revenue</h4>
+              <p className="list-group-item-text">{this.state?.sumRevenue}</p>
+            </div>
+            <div className="list-group">
+              <h4 className="list-group-item-heading">Total Sales</h4>
+              <p className="list-group-item-text">{this.state?.sumSalesQy}</p>
+            </div>
+            <ExportToExcel
+              revenue={this.state.sumRevenue}
+              sales={this.state.sumSalesQy}
+              isFromSales={true}
+            />
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     );
   }
 }
-
