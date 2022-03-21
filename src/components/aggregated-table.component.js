@@ -5,10 +5,10 @@ export default class AggregatedTable extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log(this.props.apiData);
   }
 
   render() {
+      // Defines what columns should go with what API data.
     const columns = [
         {
             dataField: 'city_id',
@@ -27,6 +27,7 @@ export default class AggregatedTable extends Component {
             text: 'Year and Month'
         }
     ];
+    // Sorts data based on hierarchy1_id for easier review of data.
     const sortedData = this.props?.apiData.sort((a, b) => {
         if (a.hierarchy1_id < b.hierarchy1_id) { 
             return -1;
@@ -37,6 +38,7 @@ export default class AggregatedTable extends Component {
         }
     });
     return (
+        // Shows table if there is data else show nothing.
       <div>
         {this.props?.apiData ? (
           <BootstrapTable

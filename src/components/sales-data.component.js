@@ -34,6 +34,7 @@ export default class SalesData extends Component {
   }
   componentDidMount() {}
 
+  // Gets sales data with axios and displays in UI.
   getSalesData(e) {
     e.preventDefault();
     this.form.validateAll();
@@ -162,6 +163,7 @@ export default class SalesData extends Component {
           <ExportToExcel 
             revenue={this.state.sumRevenue}
             sales={this.state.sumSalesQy}
+            isFromSales={true}
           />
         </div>
         ) : (

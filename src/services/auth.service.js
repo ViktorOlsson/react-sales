@@ -1,6 +1,7 @@
 import axios from "axios";
 const API_URL = "http://localhost:5000/";
 class AuthService {
+  // Makes request and o success saves the JWT token in sessionStorage for use.
   login(email, password) {
     const item = {
       email: email,
@@ -17,9 +18,12 @@ class AuthService {
         // return response.data;
       });
   }
+  // Removes the users JWT token.
   logout() {
     sessionStorage.removeItem("user");
   }
+  // Signs a user up for using the application.
+  // Converts everthing into form data since the API expects form data.
   register(name, email, password) {
     const item = {
       name: name,

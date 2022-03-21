@@ -3,7 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
-import  { Navigate } from 'react-router-dom'
+// Helper function for returning string when input is not filled.
 const required = value => {
   if (!value) {
     return (
@@ -16,6 +16,7 @@ const required = value => {
 export default class Login extends Component {
   constructor(props) {
     super(props);
+    // Bindning 'this' keyword.
     this.handleLogin = this.handleLogin.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
@@ -26,16 +27,21 @@ export default class Login extends Component {
       message: ""
     };
   }
+  // Sets state based on user input in form.
   onChangeEmail(e) {
     this.setState({
       email: e.target.value
     });
   }
+  // Sets state based on user input in form.
   onChangePassword(e) {
     this.setState({
       password: e.target.value
     });
   }
+  // Handels the login by taking valid form data and calls the helper function login from AuthService.
+  // On success user is logged in and rerouted to sales-data view.
+  // On error sets a error message.
   handleLogin(e) {
     e.preventDefault();
     this.setState({
@@ -47,7 +53,6 @@ export default class Login extends Component {
       AuthService.login(this.state.email, this.state.password).then(
         () => {
           window.location.href = '/sales-data';
-          // <Navigate replace='/sales-data'  />
         },
         error => {
           const resMessage =

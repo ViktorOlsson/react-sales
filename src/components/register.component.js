@@ -43,6 +43,7 @@ const vpassword = value => {
 export default class Register extends Component {
   constructor(props) {
     super(props);
+    // Binding 'this' keyword.
     this.handleRegister = this.handleRegister.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -55,6 +56,7 @@ export default class Register extends Component {
       message: ""
     };
   }
+  // All onChange functions sets state based on input.
   onChangeUsername(e) {
     this.setState({
       name: e.target.value
@@ -70,6 +72,9 @@ export default class Register extends Component {
       password: e.target.value
     });
   }
+  // Posts a new user from valid user data to the server.
+  // When successful reroute to login
+  // On error save error message.
   handleRegister(e) {
     e.preventDefault();
     this.setState({
@@ -88,6 +93,7 @@ export default class Register extends Component {
             message: response.data.message,
             successful: true
           });
+          window.location.href = '/login';
         },
         error => {
           const resMessage =
