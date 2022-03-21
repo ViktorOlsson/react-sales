@@ -26,7 +26,7 @@ const vusername = value => {
   if (value.length < 3 || value.length > 20) {
     return (
       <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
+        The name must be between 3 and 20 characters.
       </div>
     );
   }
@@ -48,7 +48,7 @@ export default class Register extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.state = {
-      username: "",
+      name: "",
       email: "",
       password: "",
       successful: false,
@@ -57,7 +57,7 @@ export default class Register extends Component {
   }
   onChangeUsername(e) {
     this.setState({
-      username: e.target.value
+      name: e.target.value
     });
   }
   onChangeEmail(e) {
@@ -79,7 +79,7 @@ export default class Register extends Component {
     this.form.validateAll();
     if (this.checkBtn.context._errors.length === 0) {
       AuthService.register(
-        this.state.username,
+        this.state.name,
         this.state.email,
         this.state.password
       ).then(
@@ -122,12 +122,12 @@ export default class Register extends Component {
             {!this.state.successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="name">Name</label>
                   <Input
                     type="text"
                     className="form-control"
-                    name="username"
-                    value={this.state.username}
+                    name="name"
+                    value={this.state.name}
                     onChange={this.onChangeUsername}
                     validations={[required, vusername]}
                   />
@@ -135,7 +135,7 @@ export default class Register extends Component {
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <Input
-                    type="text"
+                    type="email"
                     className="form-control"
                     name="email"
                     value={this.state.email}
